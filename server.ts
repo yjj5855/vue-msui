@@ -7,20 +7,9 @@ import * as cookieParser from "cookie-parser";
 import * as queryString from 'querystring';
 import {config} from './env'
 
-import initAccessToken from './server/middleware/initAccessToken'
-import checkUserLogin from './server/middleware/checkUserLogin'
-
 //webapp
-import * as _article from './server/webapp/routes/_article';
-import * as _qa from './server/webapp/routes/_qa';
-import * as login from './server/webapp/routes/login';
-import * as index from './server/webapp/routes/index'
-import * as member from './server/webapp/routes/member';
-import * as myComment from './server/webapp/routes/my-comment';
-import * as myQa from './server/webapp/routes/my-qa';
-import * as myStar from './server/webapp/routes/my-star';
-import * as search from './server/webapp/routes/search';
-import * as chat from './server/webapp/routes/chat';
+import * as picker from './server/webapp/routes/picker'
+
 
 
 var app = express();
@@ -32,14 +21,14 @@ if (env === 'development') {
     var webpackDevMiddleware = require('webpack-dev-middleware');
     var WebpackConfig = require('./webpack.dev.config');
     app.use(webpackDevMiddleware(webpack(WebpackConfig), {
-        publicPath: '/webapp/',
+        publicPath: '/demo/',
         stats: {
             colors: true
         }
     }));
     app.set('views',__dirname + '/server/views/dev');
 }else{
-    app.set('views',__dirname + '/public/webapp');
+    app.set('views',__dirname + '/public/demo');
 }
 
 app.set('view engine', 'html');
@@ -52,23 +41,9 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname+'/public'));
 
-
-app.use(initAccessToken);
-app.use(checkUserLogin);
-
 // Routes
 
-app.get('/webapp/content/:id',index.index);
-app.get('/webapp/article/:id',_article.index);
-app.get('/webapp/qa/:id',_qa.index);
-app.get('/webapp/login', login.index);
-app.get('/webapp/member', member.index)
-app.get('/webapp/member/qa', myQa.index)
-app.get('/webapp/member/star', myStar.index)
-app.get('/webapp/member/comment', myComment.index)
-app.get('/webapp/search', search.index)
-app.get('/webapp/chat',chat.index)
-
+app.get('/demo/picker',picker.index);
 //错误处理
 //app.get('/webapp/*',function(req,res){
 //    res.writeHead(301,{

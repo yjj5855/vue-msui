@@ -11,12 +11,7 @@ config.output.chunkFilename = '[id].[hash:8].js'
 
 config.plugins = (config.plugins || []).concat([
   //开发时css不打包到一个文件中,方便调试
-  new ExtractTextPlugin("styles.css",{allChunks: true}),
-  new webpack.optimize.CommonsChunkPlugin({
-    name: "vendor",
-    filename: "[name].js",
-    minChunks: Infinity,
-  }),
+  // new ExtractTextPlugin("styles.css",{allChunks: true}),
   new webpack.optimize.UglifyJsPlugin({
     compressor: {
       warnings: false

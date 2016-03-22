@@ -7,23 +7,14 @@ module.exports = {
   devtool: 'source-map',
 
   entry: {
-    web_app:"./client/com.chezhil.webapp/main",
-    //公共库
-    vendor : [
-      'q',
-      './env',
-      'vue',
-      'vue-router',
-      './client/service/api.service',
-      './client/service/weixin.service'
-    ]
+    demo:"./demo/main",
   },
 
   output: {
-    path: __dirname + '/public/webapp',
+    path: __dirname + '/public/demo',
     filename: '[name].[chunkhash:8].js',
     chunkFilename: '[id].[chunkhash:8].js',
-    publicPath: '/webapp/'
+    publicPath: '/demo/'
   },
 
   module: {
@@ -37,6 +28,7 @@ module.exports = {
         }
       },
       { test: /\.html$/, loader: 'raw' },
+      // { test: /\.vue$/, loader: 'vue' },
       { test: /\.less$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!less-loader") }
     ]
   }
