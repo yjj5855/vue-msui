@@ -15,7 +15,7 @@
 ##### 下拉刷新
 ##### 无线滚动
 
-### <div id="picker">picker</div>
+### <div id="picker">picker</div><a href="http://182.92.99.230:5666/demo/picker">demo</a>
 #### 用法
     <picker header-text="请选择性别" :open.sync="isOpenMalePicker" :options="maleOptions" :val="male">
 
