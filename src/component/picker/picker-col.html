@@ -1,0 +1,8 @@
+<div class="picker-items-col picker-items-col-center">
+    <div class="picker-items-col-wrapper" >
+        <div v-for="value in option.values"
+             @click="handleClick(value)"
+             class="picker-item {{value.value == val.value ?'picker-selected':''}}"
+        >{{value.text}}</div>
+    </div>
+</div>

@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import App from './states/app'
 import {picker} from '../src/index'
 
-
 Vue.use(VueRouter);
 Vue.component('picker',picker);
 

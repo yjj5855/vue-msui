@@ -1,4 +1,5 @@
-import tpl from './template.html'
+import tpl from './picker.html'
+import pickerCol from './picker-col'
 export default {
     template : tpl,
     props: {
@@ -38,6 +39,18 @@ export default {
                 }
             ]
         },
+        updateValuesOnMomentum:{
+            type: Boolean,
+            default: false
+        },
+        rotateEffect: {
+            type: Boolean,
+            default: true
+        },
+        momentumRatio: {
+            type: Number,
+            default: 7
+        },
         //选择完回调
         success: {
             type: Function,
@@ -45,16 +58,33 @@ export default {
     },
     data(){
         return {
+            isMoved : false,
+            isTouched : false
+        }
+    },
+    methods: {
+        ok(){
+            this.open = false;
+        },
+        initPickerCol(colElement,updateItems){
 
         }
     },
     components: {
-
+        pickerCol : pickerCol,
     },
     init(){
         console.log('picker init',this.$el)
     },
     ready(){
-        console.log('picker ready',this.$el)
+        let self = this;
+        console.log('picker ready',this.$el);
+
+        
+        this.$watch('open',function (newVal) {
+            if(newVal){
+                this.$broadcast('open-picker')
+            }
+        })
     }
 }

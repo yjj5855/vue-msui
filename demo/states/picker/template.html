@@ -16,7 +16,7 @@
                         <div class="item-inner">
                             <div class="item-title label">性别</div>
                             <div class="item-input" v-text="male[0].text"
-                                @click="=true">
+                                @click="isOpenMalePicker = true">
 
                             </div>
                         </div>
@@ -26,6 +26,6 @@
         </div>
     </div>
 </div>
-<picker header-text="请选择性别" :open="true" :options="maleOptions" :val="male">
+<picker header-text="请选择性别" :open.sync="isOpenMalePicker" :options="maleOptions" :val="male">
 
 </picker>

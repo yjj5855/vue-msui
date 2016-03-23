@@ -10,9 +10,10 @@ let Index = Vue.extend({
     },
     data : ()=>{
         return {
+            isOpenMalePicker : false,
             male : [{
-                text : '男',
-                value : 0
+                text : '女',
+                value : 1
             }],
             maleOptions : [
                 {
@@ -24,7 +25,24 @@ let Index = Vue.extend({
                         {
                             text : '女',
                             value : 1
+                        },
+                        {
+                            text : '中性',
+                            value : 2
+                        },
+                        {
+                            text : '变性',
+                            value : 3
+                        },
+                        {
+                            text : '双性',
+                            value : 4
+                        },
+                        {
+                            text : '无性',
+                            value : 5
                         }
+
                     ]
                 }
             ]

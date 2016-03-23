@@ -1,0 +1,18 @@
+<div class="picker-modal picker-columns remove-on-close modal-in" style="display:{{open?'block':'none'}}">
+    <slot name="header">
+        <header class="bar bar-nav">
+            <button class="button button-link pull-right" @click="ok()">{{okText}}</button>
+            <h1 class="title" >{{headerText}}</h1>
+        </header>
+    </slot>
+    <slot name="options">
+        <div class="picker-modal-inner picker-items">
+            <template v-for="(i, option) in options">
+                <picker-col :val.sync="val[i]" :option.sync="option">
+
+                </picker-col>
+            </template>
+            <div class="picker-center-highlight"></div>
+        </div>
+    </slot>
+</div>
