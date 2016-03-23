@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node server --harmony",
-    "build": "rm -rf ./public/webapp && webpack --progress --hide-modules --config webpack.prod.config.js"
+    "build": "rm -rf ./public/demo && webpack --progress --hide-modules --config webpack.prod.config.js"
   },
   "dependencies": {
     "babel-core": "^6.0.0",
