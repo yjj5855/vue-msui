@@ -4,7 +4,6 @@ node_modules
 __build__
 .DS_Store
 Thumbs.db
-env.js
 server/views/dev/**
 npm-debug.log
 logs
