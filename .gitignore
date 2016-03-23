@@ -4,7 +4,6 @@ node_modules
 __build__
 .DS_Store
 Thumbs.db
-server/views/dev/**
 npm-debug.log
 logs
 public/msui
