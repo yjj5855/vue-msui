@@ -43,6 +43,10 @@ export default {
             type: Boolean,
             default: false
         },
+        updateValuesOnTouchmove:{
+            type: Boolean,
+            default: true
+        },
         rotateEffect: {
             type: Boolean,
             default: true
@@ -50,6 +54,10 @@ export default {
         momentumRatio: {
             type: Number,
             default: 7
+        },
+        freeMode: {
+            type: Boolean,
+            default: false
         },
         //选择完回调
         success: {
@@ -74,11 +82,11 @@ export default {
         pickerCol : pickerCol,
     },
     init(){
-        console.log('picker init',this.$el)
+        console.log('picker init')
     },
     ready(){
         let self = this;
-        console.log('picker ready',this.$el);
+        console.log('picker ready');
 
         
         this.$watch('open',function (newVal) {

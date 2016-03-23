@@ -14,6 +14,9 @@ let Index = Vue.extend({
             male : [{
                 text : '女',
                 value : 1
+            },{
+                text : '先生啊啊啊',
+                value : 0
             }],
             maleOptions : [
                 {
@@ -43,6 +46,18 @@ let Index = Vue.extend({
                             value : 5
                         }
 
+                    ]
+                },
+                {
+                    values : [
+                        {
+                            text : '先生啊啊啊',
+                            value : 0
+                        },
+                        {
+                            text : '小姐',
+                            value : 1
+                        }
                     ]
                 }
             ]
