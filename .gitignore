@@ -6,4 +6,4 @@ __build__
 Thumbs.db
 npm-debug.log
 logs
-public/demo
+#public/demo
