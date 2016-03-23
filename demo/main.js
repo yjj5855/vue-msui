@@ -1,7 +1,10 @@
+import './main.less'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './states/app'
-import {picker} from '../src/index'
+import {
+    picker
+} from '../src/index'
 
 Vue.use(VueRouter);
 Vue.component('picker',picker);

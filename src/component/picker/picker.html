@@ -1,4 +1,4 @@
-<div class="picker-modal picker-columns remove-on-close modal-in" style="display:{{open?'block':'none'}}">
+<div class="picker-modal picker-columns remove-on-close {{open?'modal-in':'modal-out'}}" style="display:block">
     <slot name="header">
         <header class="bar bar-nav">
             <button class="button button-link pull-right" @click="ok()">{{okText}}</button>
