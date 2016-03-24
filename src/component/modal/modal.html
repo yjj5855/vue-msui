@@ -1,0 +1,8 @@
+<div>
+    <div class="modal-overlay {{showOverlay?'modal-overlay-visible':''}}"></div>
+    <components
+        v-for="modal in modals"
+        :is="modal.type"
+        :option="modal.option"
+    ></components>
+</div>

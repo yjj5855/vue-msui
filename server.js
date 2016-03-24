@@ -7,6 +7,7 @@ var cookieParser = require("cookie-parser");
 var env_1 = require('./env');
 //webapp
 var picker = require('./server/webapp/routes/picker');
+var index = require('./server/webapp/routes/index');
 var app = express();
 app.use(errorHandler());
 // Configuration
@@ -34,14 +35,15 @@ app.use(methodOverride());
 app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 // Routes
+app.get('/demo/index', index.index);
 app.get('/demo/picker', picker.index);
 //错误处理
-//app.get('/webapp/*',function(req,res){
-//    res.writeHead(301,{
-//        'Location':'/webapp/content/g0'
-//    });
-//    res.end();
-//});
+app.get('/*', function (req, res) {
+    res.writeHead(301, {
+        'Location': '/demo/index'
+    });
+    res.end();
+});
 app.listen(env_1.config.PORT, function () {
     console.log("Demo Express server listening on port %d in %s mode", env_1.config.PORT, env_1.config.NODE_ENV || '');
 });

@@ -1,0 +1,30 @@
+<div class="page page-current">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="javascript:;" @click="goBack(this)"></a>
+        <h1 class="title">index</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="content-block-title">demo</div>
+        <div class="list-block">
+            <ul>
+                <li class="item-content item-link" @click="goRoute('/demo/picker')">
+                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">picker</div>
+                        <div class="item-after"></div>
+                    </div>
+                </li>
+                <li class="item-content item-link" @click="goRoute('/demo/toast')">
+                    <div class="item-media"><i class="icon icon-f7"></i></div>
+                    <div class="item-inner">
+                        <div class="item-title">toast</div>
+                        <div class="item-after"></div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

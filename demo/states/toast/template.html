@@ -1,0 +1,28 @@
+<div class="page page-current">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="javascript:;" @click="goBack(this)"></a>
+        <h1 class="title">toast</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="list-block">
+            <ul>
+                <li class="align-top">
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-comment"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">显示文本</div>
+                            <div class="item-input">
+                                <textarea v-model="text"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a class="button button-info" @click="addToast()">显示</a>
+    </div>
+</div>
+<modal v-ref:modal></modal>

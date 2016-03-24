@@ -3,11 +3,18 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './states/app'
 import {
-    picker
+    picker,
+    modal,
+    toast
 } from '../src/index'
 
 Vue.use(VueRouter);
+Vue.prototype.goBack = function(_this){
+    window.history.back();
+};
 Vue.component('picker',picker);
+Vue.component('modal',modal);
+Vue.component('toast',toast);
 
 var router = new VueRouter({
     history: true, //html5模式 去掉锚点
@@ -15,6 +22,15 @@ var router = new VueRouter({
 })
 
 router.map({
+    '/demo/index': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/index/route').default;
+                resolve(route);
+            })
+        }
+    },
     '/demo/picker': {
         component: function (resolve) {
             //webpack自带功能 实现异步加载路由
@@ -24,9 +40,18 @@ router.map({
             })
         }
     },
+    '/demo/toast': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/toast/route').default;
+                resolve(route);
+            })
+        }
+    },
 })
 router.redirect({
-    '*': '/demo/picker'
+    '*': '/demo/index'
 })
 
 router.start(App,'#demo');

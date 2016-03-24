@@ -9,6 +9,7 @@ import {config} from './env'
 
 //webapp
 import * as picker from './server/webapp/routes/picker'
+import * as index from './server/webapp/routes/index'
 
 
 
@@ -42,15 +43,15 @@ app.use(cookieParser());
 app.use(express.static(__dirname+'/public'));
 
 // Routes
-
+app.get('/demo/index',index.index);
 app.get('/demo/picker',picker.index);
 //错误处理
-//app.get('/webapp/*',function(req,res){
-//    res.writeHead(301,{
-//        'Location':'/webapp/content/g0'
-//    });
-//    res.end();
-//});
+app.get('/*',function(req,res){
+   res.writeHead(301,{
+       'Location':'/demo/index'
+   });
+   res.end();
+});
 
 
 app.listen(config.PORT, function(){

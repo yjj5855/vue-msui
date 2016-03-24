@@ -7,13 +7,20 @@
 ##### 标签页
 ##### 对话框
 ##### 加载指示器
-##### toast
+##### <a href="#toast">toast</a>
 ##### popup
 ##### 日历
 ##### <a href="#picker">picker</a>
 ##### 日期时间
 ##### 下拉刷新
 ##### 无线滚动
+
+### <div id="toast">toast</div><a href="http://182.92.99.230:5666/demo/toast">demo</a>
+#### 用法
+    <toast :option="{content:'提示语'}" duration="2000">
+
+    </toast>
+
 
 ### <div id="picker">picker</div><a href="http://182.92.99.230:5666/demo/picker">demo</a>
 #### 用法
