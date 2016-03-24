@@ -1,0 +1,13 @@
+<div class="modal {{show?'modal-in':'modal-out'}}"
+     :style="{'margin-top':top,'display': 'block'}">
+    <div class="modal-inner">
+        <div class="modal-title" v-if="option.title !=''" >{{option.title}}</div>
+        <div class="modal-text" >{{option.content}}</div>
+    </div>
+    <div class="modal-buttons ">
+        <span class="modal-button modal-button-bold" @click="ok()">
+            <template v-if="!option.okText">确定</template>
+            <template v-else>{{option.okText}}</template>
+        </span>
+    </div>
+</div>

@@ -17,7 +17,7 @@ export default {
     },
     computed:{
         showOverlay(){
-            for(let i=this.modals.length;i>=0;i--){
+            for(let i=0;i<this.modals.length;i++){
                 if(this.modals[i].overlay){
                     return true;
                 }
@@ -30,7 +30,7 @@ export default {
             this.modals.push(modal)
         },
         modalRemove(option){
-            for(let i=0,m=this.modals.length; i<m; i++){
+            for(let i=0; i<this.modals.length; i++){
                 if(this.modals[i] && option === this.modals[i].option){
                     this.modals.splice(i,1)
                 }

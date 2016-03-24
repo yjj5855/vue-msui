@@ -26,7 +26,7 @@ export default {
     ready(){
         console.log('toast ready');
         this.top = (- Math.round($(this.$el).outerHeight() / 2) + 'px');
-        this.left = (- Math.round($(this.$el).outerWidth()) / 2 / 1.185 + 'px');
+        this.left = (- Math.round($(this.$el).outerWidth() / 2 / 1.185) + 'px');
         $(this.$el).addClass('modal-in');
         setTimeout(()=>{
             $(this.$el).addClass('modal-out').removeClass('modal-in');
