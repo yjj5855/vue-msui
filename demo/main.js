@@ -8,7 +8,8 @@ import {
     toast,
     alert,
     preloader,
-    indicator
+    indicator,
+    actions
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -19,8 +20,9 @@ Vue.component('picker',picker);
 Vue.component('modal',modal);
 Vue.component('toast',toast);
 Vue.component('alert',alert);
-Vue.component('preloader',preloader)
-Vue.component('indicator',indicator)
+Vue.component('preloader',preloader);
+Vue.component('indicator',indicator);
+Vue.component('actions',actions)
 
 var router = new VueRouter({
     history: true, //html5模式 去掉锚点
@@ -78,6 +80,15 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/indicator/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/actions': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/actions/route').default;
                 resolve(route);
             })
         }

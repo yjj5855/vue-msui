@@ -6,6 +6,7 @@ import toast from './component/toast/toast'
 import alert from './component/alert/alert'
 import preloader from './component/preloader/preloader'
 import indicator from './component/indicator/indicator'
+import actions from './component/actions/actions'
 
 exports.picker = picker
 exports.modal = modal
@@ -13,3 +14,4 @@ exports.toast = toast
 exports.alert = alert
 exports.preloader = preloader
 exports.indicator = indicator
+exports.actions = actions

@@ -8,7 +8,6 @@ import * as queryString from 'querystring';
 import {config} from './env'
 
 //webapp
-import * as picker from './server/webapp/routes/picker'
 import * as index from './server/webapp/routes/index'
 
 
@@ -44,7 +43,13 @@ app.use(express.static(__dirname+'/public'));
 
 // Routes
 app.get('/demo/index',index.index);
-app.get('/demo/picker',picker.index);
+app.get('/demo/picker',index.index);
+app.get('/demo/toast',index.index);
+app.get('/demo/alert',index.index);
+app.get('/demo/preloader',index.index);
+app.get('/demo/indicator',index.index);
+app.get('/demo/actions',index.index);
+
 //错误处理
 app.get('/*',function(req,res){
    res.writeHead(301,{

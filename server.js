@@ -6,7 +6,6 @@ var methodOverride = require("method-override");
 var cookieParser = require("cookie-parser");
 var env_1 = require('./env');
 //webapp
-var picker = require('./server/webapp/routes/picker');
 var index = require('./server/webapp/routes/index');
 var app = express();
 app.use(errorHandler());
@@ -36,7 +35,12 @@ app.use(cookieParser());
 app.use(express.static(__dirname + '/public'));
 // Routes
 app.get('/demo/index', index.index);
-app.get('/demo/picker', picker.index);
+app.get('/demo/picker', index.index);
+app.get('/demo/toast', index.index);
+app.get('/demo/alert', index.index);
+app.get('/demo/preloader', index.index);
+app.get('/demo/indicator', index.index);
+app.get('/demo/actions', index.index);
 //错误处理
 app.get('/*', function (req, res) {
     res.writeHead(301, {

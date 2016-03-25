@@ -1,0 +1,46 @@
+<div class="page page-current">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="javascript:;" @click="goBack(this)"></a>
+        <h1 class="title">actions</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+<pre style="font-size: .5rem;">
+let buttons1 = [
+    {
+        text: '请选择',
+        label: true
+    },
+    {
+        text: '卖出',
+        className : 'actions-modal-button-bold color-danger',
+        onClick: function() {
+            console.log('卖出')
+        }
+    },
+    {
+        text: '买入',
+        onClick: function() {
+            console.log('买入')
+        }
+    }
+];
+let buttons2 = [
+    {
+        text: '取消',
+        className: 'bg-danger'
+    }
+];
+
+this.$refs.modal.add({
+    type : 'actions',
+    option : [ buttons1 , buttons2 ],
+    overlay : true //显示遮罩层
+})
+</pre>
+        <a class="button button-info" @click="actions()">显示</a>
+    </div>
+</div>
+<modal v-ref:modal></modal>

@@ -1,0 +1,13 @@
+<div class="actions-modal {{show?'modal-in':'modal-out'}}">
+    <div class="actions-modal-group" v-for="buttons in option">
+        <template v-for="button in buttons">
+            <template v-if="button.label">
+                <span class="actions-modal-label {{button.className}}">{{button.text}}</span>
+            </template>
+            <template v-else>
+                <span  v-if="button.onClick" class="actions-modal-button {{button.className}}" @click="ok(button)">{{button.text}}</span>
+                <span  v-else class="actions-modal-button {{button.className}}" @click="cancel()">{{button.text}}</span>
+            </template>
+        </template>
+    </div>
+</div>

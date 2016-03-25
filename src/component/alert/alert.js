@@ -20,12 +20,17 @@ export default {
         return {
             left : 0,
             top : 0,
-            show : false
+            show : false,
+            clicked : false
         }
     },
     methods: {
         ok(){
+            if(this.clicked){
+                return;
+            }
             if(typeof this.option.ok == 'function'){
+                this.clicked = true;
                 this.option.ok();
             }
             this.show = false;
@@ -39,7 +44,6 @@ export default {
     },
     ready(){
         this.top = (- Math.round($(this.$el).outerHeight() / 2) + 'px');
-        // this.left = (- Math.round($(this.$el).outerWidth()) / 2 / 1.185 + 'px');
         this.show = true;
     }
 } 
