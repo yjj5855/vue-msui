@@ -1,0 +1,10 @@
+<div class="modal modal-no-buttons {{show?'modal-in':'modal-out'}}"
+     :style="{'margin-top':top,'display': 'block'}">
+    <div class="modal-inner">
+        <div class="modal-title" v-if="option.title && option.title !=''">{{option.title}}</div>
+        <div class="modal-text">
+            <div class="preloader"></div>
+        </div>
+    </div>
+    <div class="modal-buttons"></div>
+</div>

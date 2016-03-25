@@ -5,24 +5,27 @@
 ##### 标题栏
 ##### 工具栏
 ##### 标签页
-##### 对话框
-##### 加载指示器
+##### <a href="#alert">对话框</a>
+##### <a href="#preloader">加载指示器</a>
 ##### <a href="#toast">toast</a>
 ##### popup
 ##### 日历
+##### 操作表
 ##### <a href="#picker">picker</a>
 ##### 日期时间
 ##### 下拉刷新
 ##### 无线滚动
 
-### <div id="toast">toast</div><a href="http://182.92.99.230:5666/demo/toast">demo</a>
+# <a id="demo" href="http://182.92.99.230:5666/demo/index">demo</a>
+
+### <div id="toast">toast</div>
 #### 用法
     <toast :option="{content:'提示语'}" duration="2000">
 
     </toast>
 
 
-### <div id="picker">picker</div><a href="http://182.92.99.230:5666/demo/picker">demo</a>
+### <div id="picker">picker</div>
 #### 用法
     <picker header-text="请选择性别" :open.sync="isOpenMalePicker" :options="maleOptions" :val="male">
 

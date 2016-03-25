@@ -1,0 +1,28 @@
+<div class="page page-current">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="javascript:;" @click="goBack(this)"></a>
+        <h1 class="title">preloader</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">标题</div>
+                            <div class="item-input">
+                                <input type="text" v-model="title">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <a class="button button-info" @click="preloader()">显示</a>
+    </div>
+</div>
+<modal v-ref:modal></modal>

@@ -6,7 +6,9 @@ import {
     picker,
     modal,
     toast,
-    alert
+    alert,
+    preloader,
+    indicator
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -16,7 +18,9 @@ Vue.prototype.goBack = function(_this){
 Vue.component('picker',picker);
 Vue.component('modal',modal);
 Vue.component('toast',toast);
-Vue.component('alert',alert)
+Vue.component('alert',alert);
+Vue.component('preloader',preloader)
+Vue.component('indicator',indicator)
 
 var router = new VueRouter({
     history: true, //html5模式 去掉锚点
@@ -56,6 +60,24 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/alert/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/preloader': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/preloader/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/indicator': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/indicator/route').default;
                 resolve(route);
             })
         }
