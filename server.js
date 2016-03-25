@@ -41,6 +41,7 @@ app.get('/demo/alert', index.index);
 app.get('/demo/preloader', index.index);
 app.get('/demo/indicator', index.index);
 app.get('/demo/actions', index.index);
+app.get('/demo/pullToRefresh', index.index);
 //错误处理
 app.get('/*', function (req, res) {
     res.writeHead(301, {

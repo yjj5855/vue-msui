@@ -10,10 +10,10 @@
 ##### <a href="#toast">toast</a>
 ##### popup
 ##### 日历
-##### 操作表
+##### <a href="#acitons">操作表</a>
 ##### <a href="#picker">picker</a>
 ##### 日期时间
-##### 下拉刷新
+##### <a href="#pull-to-refresh">下拉刷新</a>
 ##### 无线滚动
 
 # <a id="demo" href="http://182.92.99.230:5666/demo/index">demo</a>
