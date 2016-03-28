@@ -1,6 +1,6 @@
 'use strict';
 var env = {
-    NODE_ENV : 'test',
+    // NODE_ENV : 'test',
     PORT : '5666',
 }
 

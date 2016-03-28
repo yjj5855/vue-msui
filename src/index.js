@@ -1,5 +1,6 @@
 import './util/device'
 import './util/zepto-adapter'
+import './util/scroller'
 import picker from './component/picker/picker'
 import modal from './component/modal/modal'
 import toast from './component/toast/toast'

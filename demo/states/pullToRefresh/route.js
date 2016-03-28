@@ -10,13 +10,14 @@ let Index = Vue.extend({
     },
     data : ()=>{
         return {
-            
+            updateTime : new Date().getTime()
         }
     },
     methods: {
         refresh(){
             return new Promise((resolve,reject)=>{
                 setTimeout(()=>{
+                    this.updateTime = new Date().getTime()
                     resolve('刷新了')
                 },3e3)
             })
