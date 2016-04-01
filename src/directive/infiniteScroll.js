@@ -13,11 +13,9 @@ let loading;
 
 export default {
     bind: function () {
-        console.log('bind')
         pageContainer = $(this.el);
         infiniteContent = pageContainer.hasClass('infinite-scroll')?pageContainer:pageContainer.find('.infinite-scroll');
         if(infiniteContent.length == 0) return;
-        console.log($.getScroller(infiniteContent))
         $(infiniteContent).on('scroll',this.handleInfiniteScroll.bind(this));
         //如果是顶部无限刷新，要将滚动条初始化于最下端
         pageContainer.forEach(function(v){

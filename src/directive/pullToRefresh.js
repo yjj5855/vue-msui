@@ -4,6 +4,7 @@ let isTouched, isMoved, touchesStart = {},
     startTranslate = 0,
     translate, scrollTop, wasScrolled, triggerDistance, dynamicTriggerDistance;
 
+
 export default {
     bind: function () {
         container = $(this.el);
