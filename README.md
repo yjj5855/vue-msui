@@ -14,7 +14,7 @@
 ##### <a href="#picker">picker</a>
 ##### 日期时间
 ##### <a href="#pull-to-refresh">下拉刷新</a>
-##### 无线滚动
+##### <a href="#infinite-scroll">无限滚动</a>
 
 # <a id="demo" href="http://182.92.99.230:5666/demo/index">demo</a>
 

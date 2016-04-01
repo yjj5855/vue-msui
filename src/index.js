@@ -10,6 +10,7 @@ import indicator from './component/indicator/indicator'
 import actions from './component/actions/actions'
 
 import pullToRefresh from './directive/pullToRefresh'
+import infiniteScroll from './directive/infiniteScroll'
 
 exports.picker = picker
 exports.modal = modal
@@ -20,3 +21,4 @@ exports.indicator = indicator
 exports.actions = actions
 
 exports.pullToRefresh = pullToRefresh
+exports.infiniteScroll = infiniteScroll

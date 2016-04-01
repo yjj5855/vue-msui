@@ -10,7 +10,8 @@ import {
     preloader,
     indicator,
     actions,
-    pullToRefresh
+    pullToRefresh,
+    infiniteScroll
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -26,6 +27,7 @@ Vue.component('indicator',indicator);
 Vue.component('actions',actions)
 
 Vue.directive('pull-to-refresh',pullToRefresh)
+Vue.directive('infinite-scroll',infiniteScroll)
 
 var router = new VueRouter({
     history: true, //html5模式 去掉锚点
@@ -101,6 +103,15 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/pullToRefresh/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/infiniteScroll': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/infiniteScroll/route').default;
                 resolve(route);
             })
         }
