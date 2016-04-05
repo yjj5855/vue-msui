@@ -7,17 +7,21 @@ export default {
             $(this.el).on('click',()=>{
                 $(value).removeClass('modal-out').css({ display : 'block'});
                 setTimeout(()=>{
+                    if($('.popup-overlay').length == 0){
+                        $('body').append(`<div class="popup-overlay modal-overlay-visible"></div>`)
+                    }else{
+                        $('.popup-overlay').addClass('modal-overlay-visible')
+                    }
                     $(value).addClass('modal-in');
-                    $('.modal-overlay').addClass('modal-overlay-visible')
                 })
             })
         }else if(this.modifiers && this.modifiers.close){
             $(this.el).on('click',()=>{
                 $(value).removeClass('modal-in').addClass('modal-out')
+                $('.popup-overlay').removeClass('modal-overlay-visible')
                 setTimeout(()=>{
                     $(value).removeClass('modal-out').css({ display : 'none'});
-                    $('.modal-overlay').remove('modal-overlay-visible')
-                },5e2)
+                },4e2)
             })
         }
     },
