@@ -11,7 +11,8 @@ import {
     indicator,
     actions,
     pullToRefresh,
-    infiniteScroll
+    infiniteScroll,
+    popup
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -28,6 +29,7 @@ Vue.component('actions',actions)
 
 Vue.directive('pull-to-refresh',pullToRefresh)
 Vue.directive('infinite-scroll',infiniteScroll)
+Vue.directive('popup',popup)
 
 var router = new VueRouter({
     history: true, //html5模式 去掉锚点
@@ -112,6 +114,15 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/infiniteScroll/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/popup': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/popup/route').default;
                 resolve(route);
             })
         }

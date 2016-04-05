@@ -1,0 +1,30 @@
+<div class="page page-current">
+    <!-- 标题栏 -->
+    <header class="bar bar-nav">
+        <a class="icon icon-left pull-left" href="javascript:;" @click="goBack(this)"></a>
+        <h1 class="title">popup</h1>
+    </header>
+
+    <!-- 这里是页面内容区 -->
+    <div class="content">
+        <a class="button button-info" v-popup.open="'.popup-about'">popup-about</a>
+
+        <a class="button button-info" v-popup.open="'.popup-services'">popup-services</a>
+    </div>
+</div>
+<!--popup层-->
+<div class="popup popup-about">
+    <div class="content-block">
+        <p>About</p>
+        <p><a href="javascript:;" v-popup.close="'.popup-about'">Close popup</a></p>
+        <p>Lorem ipsum dolor ...</p>
+    </div>
+</div>
+
+<div class="popup popup-services">
+    <div class="content-block">
+        <p>Services</p>
+        <p><a href="javascript:;" v-popup.close="'.popup-services'">Close popup</a></p>
+        <p>Lorem ipsum dolor ...</p>
+    </div>
+</div>

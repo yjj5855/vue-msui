@@ -1,9 +1,14 @@
-import tpl from './modal.html'
-import toast from '../toast/toast'
-import alert from '../alert/alert'
-import preloader from '../preloader/preloader'
+// import tpl from './modal.html'
 export default {
-    template : tpl,
+    template : `<div>
+                    <div class="modal-overlay {{showOverlay?'modal-overlay-visible':''}}"></div>
+                    <components
+                        v-for="modal in modals"
+                        :is="modal.type"
+                        :option="modal.option"
+                        :duration="modal.duration"
+                    ></components>
+                </div>`,
     props: {
 
     },
@@ -15,9 +20,7 @@ export default {
         }
     },
     components: {
-        // toast : toast,
-        // alert : alert,
-        // preloader : preloader
+
     },
     computed:{
         showOverlay(){

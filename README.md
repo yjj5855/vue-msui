@@ -8,7 +8,7 @@
 ##### <a href="#alert">对话框</a>
 ##### <a href="#preloader">加载指示器</a>
 ##### <a href="#toast">toast</a>
-##### popup
+##### <a href="#popup">popup</a>
 ##### 日历
 ##### <a href="#acitons">操作表</a>
 ##### <a href="#picker">picker</a>

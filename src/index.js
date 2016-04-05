@@ -11,6 +11,7 @@ import actions from './component/actions/actions'
 
 import pullToRefresh from './directive/pullToRefresh'
 import infiniteScroll from './directive/infiniteScroll'
+import popup from './directive/popup'
 
 exports.picker = picker
 exports.modal = modal
@@ -22,3 +23,4 @@ exports.actions = actions
 
 exports.pullToRefresh = pullToRefresh
 exports.infiniteScroll = infiniteScroll
+exports.popup = popup
