@@ -1,0 +1,12 @@
+<div class="picker-calendar-month"
+     style="transform: {{transformStyle}}">
+
+
+    <div class="picker-calendar-row" v-for="dayRow in dayArray">
+        <div v-for="day in dayRow"
+                class="picker-calendar-day {{day.className}}"
+             data-date="">
+            <span>{{day.dayNumber}}</span>
+        </div>
+    </div>
+</div>

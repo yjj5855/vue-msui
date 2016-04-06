@@ -12,7 +12,8 @@ import {
     actions,
     pullToRefresh,
     infiniteScroll,
-    popup
+    popup,
+    calendar
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -25,7 +26,8 @@ Vue.component('toast',toast);
 Vue.component('alert',alert);
 Vue.component('preloader',preloader);
 Vue.component('indicator',indicator);
-Vue.component('actions',actions)
+Vue.component('actions',actions);
+Vue.component('calendar',calendar);
 
 Vue.directive('pull-to-refresh',pullToRefresh)
 Vue.directive('infinite-scroll',infiniteScroll)
@@ -123,6 +125,15 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/popup/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/calendar': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/calendar/route').default;
                 resolve(route);
             })
         }

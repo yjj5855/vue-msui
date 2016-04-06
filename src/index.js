@@ -8,6 +8,7 @@ import alert from './component/alert/alert'
 import preloader from './component/preloader/preloader'
 import indicator from './component/indicator/indicator'
 import actions from './component/actions/actions'
+import calendar from './component/calendar/calendar'
 
 import pullToRefresh from './directive/pullToRefresh'
 import infiniteScroll from './directive/infiniteScroll'
@@ -20,6 +21,8 @@ exports.alert = alert
 exports.preloader = preloader
 exports.indicator = indicator
 exports.actions = actions
+exports.calendar = calendar
+
 
 exports.pullToRefresh = pullToRefresh
 exports.infiniteScroll = infiniteScroll
