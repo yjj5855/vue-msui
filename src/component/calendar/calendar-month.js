@@ -22,7 +22,10 @@ export default {
             dayArray : [
                 [],[],[],[],[],[]
             ],
-            currentValues : []
+            currentValues : [],
+            transformStyle : {
+                transform : ''
+            }
         }
     },
     methods: {
@@ -119,21 +122,10 @@ export default {
 
         }
     },
-    watch : {
-        'value' : function (val) {
-            console.log(val)
-            this.jisuan();
-        }
-    },
-    computed : {
-        transformStyle(){
-            return 'translate3d('+(this.translate)+'00%, 0%, 0px);';
-        }
-    },
     beforeCompile(){
         this.jisuan();
     },
     ready(){
-        
+        this.transformStyle.transform = 'translate3d('+(this.translate)+'00%, 0%, 0px)';
     }
 }

@@ -113,6 +113,55 @@ export default {
             this.currentYearNumber = this.monthList[1].year;
             this.currentMonthNumber = this.options.monthNames[this.monthList[1].month];
         },
+        resetMonth(year,month,translate){
+
+            let prevCalendar,nextCalendar;
+            if(month === 0){
+                prevCalendar = {
+                    year : year - 1,
+                    month: 11,
+                    date : new Date(year - 1, 11),
+                    monthsTranslate : translate - 1
+                };
+                nextCalendar = {
+                    year : year,
+                    month: month + 1,
+                    date : new Date(year, month + 1),
+                    monthsTranslate : translate + 1
+                }
+            }else if(month === 11){
+                prevCalendar = {
+                    year : year,
+                    month: month - 1,
+                    date : new Date(year, month - 1),
+                    monthsTranslate : translate - 1
+                };
+                nextCalendar = {
+                    year : year + 1,
+                    month: 0,
+                    date : new Date(year+1, 0),
+                    monthsTranslate : translate + 1
+                }
+            }else{
+                prevCalendar = {
+                    year : year,
+                    month: month - 1,
+                    date : new Date(year, month - 1),
+                    monthsTranslate : translate - 1
+                };
+                nextCalendar = {
+                    year : year,
+                    month: month + 1,
+                    date : new Date(year, month + 1),
+                    monthsTranslate : translate + 1
+                }
+            }
+            this.monthList.pop();
+            this.monthList.push(nextCalendar);
+            this.monthList.shift();
+            this.monthList.unshift(prevCalendar);
+            
+        },
         prevMonth(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
                 transition = '';
@@ -124,11 +173,11 @@ export default {
 
             let translate = (-this.monthsTranslate * 100) * this.inverter;
             this.transition = transition;
-            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
 
 
             //当前是一月的话
             let current = this.monthList[1];
+
             if(this.monthList[0].month == 0 ){
                 this.monthList.unshift({
                     year : this.monthList[0].year - 1,
@@ -144,28 +193,12 @@ export default {
                     monthsTranslate : this.monthsTranslate - 1
                 })
             }
-            if(this.chooseType == 'y'){
-                if(current.month == 11){
-                    this.monthList[2] = {
-                        year : current.year + 1,
-                        month: 0,
-                        date : new Date(current.year, 0),
-                        monthsTranslate : current.monthsTranslate
-                    }
-                }else{
-                    this.monthList[2] = {
-                        year : current.year,
-                        month: current.month + 1,
-                        date : new Date(current.year, current.month + 1),
-                        monthsTranslate : current.monthsTranslate
-                    } 
-                }
-            }
             this.monthList.pop();
             this.setCurrentNumber();
-            this.chooseType = 'm';
             //计算end
-            
+
+            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
+
         },
         nextMonth(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -178,46 +211,30 @@ export default {
 
             let translate = (-this.monthsTranslate * 100) * this.inverter;
             this.transition = transition;
-            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
 
             //计算
             let current = this.monthList[1];
-            if(this.monthList[this.monthList.length-1].month == 11){
+            if(this.monthList[2].month == 11){
                 this.monthList.push({
-                    year : this.monthList[this.monthList.length-1].year + 1,
+                    year : this.monthList[2].year + 1,
                     month: 0,
-                    date : new Date(this.monthList[this.monthList.length-1].year+1, 0),
+                    date : new Date(this.monthList[2].year+1, 0),
                     monthsTranslate : this.monthsTranslate + 1
                 })
             }else{
                 this.monthList.push({
-                    year : this.monthList[this.monthList.length-1].year,
-                    month: this.monthList[this.monthList.length-1].month + 1,
-                    date : new Date(this.monthList[this.monthList.length-1].year,this.monthList[this.monthList.length-1].month+1),
+                    year : this.monthList[2].year,
+                    month: this.monthList[2].month + 1,
+                    date : new Date(this.monthList[2].year,this.monthList[2].month+1),
                     monthsTranslate : this.monthsTranslate + 1
                 })
             }
-            if(this.chooseType == 'y'){
-                if(current.month == 0){
-                    this.monthList[0] = {
-                        year : current.year - 1,
-                        month: 11,
-                        date : new Date(current.year - 1, 11),
-                        monthsTranslate : current.monthsTranslate
-                    }
-                }else{
-                    this.monthList[0] = {
-                        year : current.year,
-                        month: current.month - 1,
-                        date : new Date(current.year, current.month - 1),
-                        monthsTranslate : current.monthsTranslate
-                    }
-                }
-            }
             this.monthList.shift();
             this.setCurrentNumber();
-            this.chooseType = 'm';
             //计算end
+
+            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
+
         },
         prevYear(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -230,19 +247,17 @@ export default {
 
             let translate = (-this.monthsTranslate * 100) * this.inverter;
             this.transition = transition;
-            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
 
 
             //计算
-            if(this.monthList[0].year != this.monthList[1].year - 1){
-                let current = this.monthList.shift();
-                this.monthList.unshift({
-                    year : current.year - 1,
-                    month: current.month + 1,
-                    date : new Date(current.year - 1,current.month + 1),
-                    monthsTranslate : current.monthsTranslate
-                })
-            }
+            let prev = this.monthList.shift();
+            let current = this.monthList[0];
+            this.monthList.unshift({
+                year : current.year -1,
+                month: current.month,
+                date : new Date(current.year - 1, current.month),
+                monthsTranslate : prev.monthsTranslate
+            })
             this.monthList.unshift({
                 year : this.monthList[0].year - 1,
                 month: this.monthList[0].month,
@@ -251,8 +266,12 @@ export default {
             })
             this.monthList.pop();
             this.setCurrentNumber();
-            this.chooseType = 'y';
             //计算end
+            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
+
+            //计算之后重置为月份模式
+            this.resetMonth(this.monthList[1].year,this.monthList[1].month,this.monthList[1].monthsTranslate);
+
         },
         nextYear(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -265,11 +284,10 @@ export default {
 
             let translate = (-this.monthsTranslate * 100) * this.inverter;
             this.transition = transition;
-            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
 
 
             //计算 1.判断下一个是否为下一年的日历
-            if(this.monthList[this.monthList.length-1].year != this.monthList[this.monthList.length-2].year + 1 ){
+            if(this.monthList[2].year != this.monthList[1].year + 1 && this.monthList[2].month != 0){
                 let current = this.monthList.pop();
                 this.monthList.push({
                     year : current.year + 1,
@@ -279,14 +297,20 @@ export default {
                 })
             }
             this.monthList.push({
-                year : this.monthList[this.monthList.length-1].year + 1,
-                month: this.monthList[this.monthList.length-1].month,
-                date : new Date(this.monthList[this.monthList.length-1].year + 1,this.monthList[this.monthList.length-1].month),
+                year : this.monthList[2].year + 1,
+                month: this.monthList[2].month,
+                date : new Date(this.monthList[2].year + 1,this.monthList[2].month),
                 monthsTranslate : this.monthsTranslate + 1
             });
             this.monthList.shift();
             this.setCurrentNumber();
             //计算end
+
+            this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
+
+            //计算之后重置为月份模式
+            this.resetMonth(this.monthList[1].year,this.monthList[1].month,this.monthList[1].monthsTranslate);
+
         },
         handleTouchStart(e){
             if (isMoved || isTouched) return;
@@ -377,6 +401,19 @@ export default {
                 month: 0,
                 date : new Date(year+1, 0),
                 monthsTranslate : 1
+            }
+        }else{
+            prevCalendar = {
+                year : year,
+                month: month - 1,
+                date : new Date(year, month - 1),
+                monthsTranslate : translate - 1
+            };
+            nextCalendar = {
+                year : year,
+                month: month + 1,
+                date : new Date(year, month + 1),
+                monthsTranslate : translate + 1
             }
         }
         currentCalendar = {
