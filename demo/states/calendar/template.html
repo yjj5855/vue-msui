@@ -15,8 +15,7 @@
                         <div class="item-media"><i class="icon icon-form-gender"></i></div>
                         <div class="item-inner">
                             <div class="item-title label">日期</div>
-                            <div class="item-input"
-                                @click="isOpenCalendar = true">
+                            <div class="item-input" id="calendar">
                                 {{calendarOptions.values}}
                             </div>
                         </div>
@@ -26,6 +25,6 @@
         </div>
     </div>
 </div>
-<calendar :open.sync="isOpenCalendar" :options="calendarOptions" >
+<calendar :open.sync="isOpenCalendar" :options="calendarOptions" :input="'#calendar'">
 
 </calendar>

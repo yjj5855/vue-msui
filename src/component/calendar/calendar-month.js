@@ -28,6 +28,11 @@ export default {
             }
         }
     },
+    events : {
+        'select-day' : function(day){
+            this.jisuan();
+        }
+    },
     methods: {
         daysInMonth(date) {
             var d = new Date(date);
@@ -68,7 +73,6 @@ export default {
                     this.currentValues.push(new Date(this.$parent.options.values[i]).setHours(0,0,0,0));
                 }
             }
-
             for (i = 1; i <= rows; i++) {
                 var rowHTML = '';
                 var row = i;
@@ -120,6 +124,9 @@ export default {
                 }
             }
 
+        },
+        dayClick(day){
+            this.$dispatch('dayClick',day);
         }
     },
     beforeCompile(){

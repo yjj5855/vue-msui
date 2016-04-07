@@ -45,6 +45,10 @@ let isTouched, isMoved, touchStartX, touchStartY, touchCurrentX, touchCurrentY, 
 export default {
     template : tpl,
     props: {
+        input : {
+            type : String,
+            default : ''
+        },
         open : {
             type : Boolean,
             default : false
@@ -94,8 +98,32 @@ export default {
         }
     },
     events : {
-        'change-month' : ()=>{
-            
+        'dayClick' : function(day){
+            let broadcast = false;
+            let prevOrNext = '';
+            if(day.className.indexOf('picker-calendar-day-prev') >= 0){
+                prevOrNext = 'prev';
+                broadcast = true;
+            }else if(day.className.indexOf('picker-calendar-day-next') >= 0){
+                prevOrNext = 'next';
+                broadcast = true;
+            }else if(day.className.indexOf('picker-calendar-day-selected') >= 0){
+                
+            }else {
+                broadcast = true;
+            }
+            if(broadcast){
+                
+                if(prevOrNext == 'prev') this.prevMonth();
+                else if (prevOrNext == 'next') this.nextMonth();
+                
+                let monthNumber = day.dayMonth+1+'',dayNumber = day.dayNumber+'';
+                if(monthNumber.length == 1) monthNumber = '0' + monthNumber;
+                if(dayNumber.length == 1) dayNumber = '0' + dayNumber;
+                this.options.values = [`${day.dayYear}-${monthNumber}-${dayNumber}`];
+                
+                this.$broadcast('select-day',day);
+            }
         } 
     },
     components: {
@@ -478,5 +506,22 @@ export default {
             $(this.$el).find('.picker-calendar-months-wrapper').on($.touchEvents.move, this.handleTouchMove);
             $(this.$el).find('.picker-calendar-months-wrapper').on($.touchEvents.end, this.handleTouchEnd);
         }
+        if($(this.input) && $(this.input).length > 0){
+            $(this.input).on('click',(e)=>{
+                this.open = true;
+            })
+        }
+        //点击其他地方关闭
+        $('html').on('click', (e)=>{
+            if($(this.input) && $(this.input).length > 0){
+                if(e.target !== $(this.input)[0] && $(e.target).parents('.picker-modal').length === 0){
+                    this.open = false;
+                }
+            }else{
+                if($(e.target).parents('.picker-modal').length === 0) {
+                    this.open = false;
+                }
+            }
+        });
     }
 }
