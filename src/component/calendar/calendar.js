@@ -36,6 +36,7 @@ let defaults = {
      */
 }
 
+let rtl = false;
 let col;
 let allowItemClick = true;
 let isTouched, isMoved, touchStartX, touchStartY, touchCurrentX, touchCurrentY, touchStartTime, touchEndTime, startTranslate, currentTranslate, wrapperWidth, wrapperHeight, percentage, touchesDiff, isScrolling;
@@ -113,6 +114,11 @@ export default {
             this.currentYearNumber = this.monthList[1].year;
             this.currentMonthNumber = this.options.monthNames[this.monthList[1].month];
         },
+        waitAnimate(){
+            $('.picker-calendar-months-wrapper').transitionEnd(()=> {
+                this.animating = false;
+            });
+        },
         resetMonth(year,month,translate){
 
             let prevCalendar,nextCalendar;
@@ -160,7 +166,9 @@ export default {
             this.monthList.push(nextCalendar);
             this.monthList.shift();
             this.monthList.unshift(prevCalendar);
-            
+
+            this.translate = 'translate3d(' + (this.isH ? -translate*100 : 0) + '%, ' + (this.isH ? 0 : -translate*100) + '%, 0)'
+            this.waitAnimate()
         },
         prevMonth(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -198,7 +206,7 @@ export default {
             //计算end
 
             this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
-
+            this.waitAnimate()
         },
         nextMonth(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -234,7 +242,7 @@ export default {
             //计算end
 
             this.translate = 'translate3d(' + (this.isH ? translate : 0) + '%, ' + (this.isH ? 0 : translate) + '%, 0)'
-
+            this.waitAnimate()
         },
         prevYear(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -271,7 +279,6 @@ export default {
 
             //计算之后重置为月份模式
             this.resetMonth(this.monthList[1].year,this.monthList[1].month,this.monthList[1].monthsTranslate);
-
         },
         nextYear(transition){
             if (typeof transition === 'undefined' || typeof transition === 'object') {
@@ -324,6 +331,7 @@ export default {
             startTranslate = currentTranslate = this.monthsTranslate;
         },
         handleTouchMove(e){
+            console.log(!isTouched)
             if (!isTouched) return;
 
             touchCurrentX = e.type === 'touchmove' ? e.targetTouches[0].pageX : e.pageX;
@@ -346,17 +354,58 @@ export default {
                 isMoved = true;
                 wrapperWidth = $('.picker-calendar-months-wrapper')[0].offsetWidth;
                 wrapperHeight = $('.picker-calendar-months-wrapper')[0].offsetHeight;
-                $('.picker-calendar-months-wrapper').transition(0);
+                // $('.picker-calendar-months-wrapper').transition(0);
+                this.transition = 'transition-duration: 0ms;'
             }
             e.preventDefault();
 
             touchesDiff = this.isH ? touchCurrentX - touchStartX : touchCurrentY - touchStartY;
             percentage = touchesDiff/(this.isH ? wrapperWidth : wrapperHeight);
-            currentTranslate = (this.monthsTranslate * this.inverter + percentage) * 100;
+            currentTranslate = (-this.monthsTranslate * this.inverter + percentage) * 100;
 
             // Transform wrapper
             this.translate = 'translate3d(' + (this.isH ? currentTranslate : 0) + '%, ' + (this.isH ? 0 : currentTranslate) + '%, 0)';
 
+        },
+        handleTouchEnd(e){
+            if (!isTouched || !isMoved) {
+                isTouched = isMoved = false;
+                return;
+            }
+            this.transition = '';
+            isTouched = isMoved = false;
+
+            touchEndTime = new Date().getTime();
+            if (touchEndTime - touchStartTime < 300) {
+                if (Math.abs(touchesDiff) < 10) {
+                    this.resetMonth(this.monthList[1].year,this.monthList[1].month,this.monthList[1].monthsTranslate);
+                }
+                else if (touchesDiff >= 10) {
+                    if (rtl) this.nextMonth();
+                    else this.prevMonth();
+                }
+                else {
+                    if (rtl) this.prevMonth();
+                    else this.nextMonth();
+                }
+            }
+            else {
+                if (percentage <= -0.5) {
+                    if (rtl) this.prevMonth();
+                    else this.nextMonth();
+                }
+                else if (percentage >= 0.5) {
+                    if (rtl) this.nextMonth();
+                    else this.prevMonth();
+                }
+                else {
+                    this.resetMonth(this.monthList[1].year,this.monthList[1].month,this.monthList[1].monthsTranslate);
+                }
+            }
+            // Allow click
+            setTimeout(()=>{
+                allowItemClick = true;
+            }, 100);
         }
     },
     beforeCompile(){
@@ -366,7 +415,6 @@ export default {
             }
         }
         this.$set('options',this.options);
-        console.log(this.options)
     },
     ready(){
         let initDate = this.options.values[0];
@@ -426,9 +474,9 @@ export default {
         
         //绑定触摸事件
         if (this.options.touchMove) {
-            $(this.el).find('.picker-calendar-months-wrapper').on($.touchEvents.start, this.handleTouchStart);
-            $(this.el).find('.picker-calendar-months-wrapper').on($.touchEvents.move, handleTouchMove);
-            $(this.el).find('.picker-calendar-months-wrapper').on($.touchEvents.end, handleTouchEnd);
+            $(this.$el).find('.picker-calendar-months-wrapper').on($.touchEvents.start, this.handleTouchStart);
+            $(this.$el).find('.picker-calendar-months-wrapper').on($.touchEvents.move, this.handleTouchMove);
+            $(this.$el).find('.picker-calendar-months-wrapper').on($.touchEvents.end, this.handleTouchEnd);
         }
     }
 }
