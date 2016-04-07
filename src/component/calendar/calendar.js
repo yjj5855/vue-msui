@@ -286,16 +286,15 @@ export default {
             this.transition = transition;
 
 
-            //计算 1.判断下一个是否为下一年的日历
-            if(this.monthList[2].year != this.monthList[1].year + 1 && this.monthList[2].month != 0){
-                let current = this.monthList.pop();
-                this.monthList.push({
-                    year : current.year + 1,
-                    month: current.month - 1,
-                    date : new Date(current.year + 1,current.month - 1),
-                    monthsTranslate : current.monthsTranslate
-                })
-            }
+            //计算
+            let next = this.monthList.pop();
+            let current = this.monthList[1];
+            this.monthList.push({
+                year : current.year + 1,
+                month: current.month,
+                date : new Date(current.year + 1, current.month),
+                monthsTranslate : next.monthsTranslate
+            })
             this.monthList.push({
                 year : this.monthList[2].year + 1,
                 month: this.monthList[2].month,
