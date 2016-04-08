@@ -12,7 +12,7 @@
 ##### <a href="#calendar">日历</a>
 ##### <a href="#acitons">操作表</a>
 ##### <a href="#picker">picker</a>
-##### 日期时间
+##### <a href="#datetime-picker">日期时间</a>
 ##### <a href="#pull-to-refresh">下拉刷新</a>
 ##### <a href="#infinite-scroll">无限滚动</a>
 
