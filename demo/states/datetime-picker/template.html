@@ -15,7 +15,7 @@
                         <div class="item-media"><i class="icon icon-form-gender"></i></div>
                         <div class="item-inner">
                             <div class="item-title label">日期时间</div>
-                            <div class="item-input"
+                            <div class="item-input" id="datetimeInput"
                                 @click="isOpenDatetimePicker = true">
                                 {{datetime}}
                             </div>
@@ -26,6 +26,6 @@
         </div>
     </div>
 </div>
-<datetime-picker header-text="请选择日期" :open.sync="isOpenDatetimePicker" :datetime.sync="datetime">
+<datetime-picker header-text="请选择日期" :open.sync="isOpenDatetimePicker" input="#datetimeInput" :datetime.sync="datetime">
 
 </datetime-picker>

@@ -4,6 +4,10 @@ import picker from '../picker/picker'
 export default {
     template : tpl,
     props: {
+        input: {
+            type : String,
+            default: ''
+        },
         headerText : {
             type : String,
             default: '请选择'
@@ -167,6 +171,24 @@ export default {
     ready(){
         let self = this;
         console.log('datetime-picker ready');
-        
+
+        if($(this.input) && $(this.input).length > 0){
+            $(this.input).on('click',(e)=>{
+                this.open = true;
+            })
+        }
+        //点击其他地方关闭
+        $('html').on('click', (e)=>{
+            if($(this.input) && $(this.input).length > 0){
+                if(e.target !== $(this.input)[0] && $(e.target).parents('.picker-modal').length === 0){
+                    this.open = false;
+                }
+            }else{
+                if($(e.target).parents('.picker-modal').length === 0) {
+                    this.open = false;
+                }
+            }
+        });
+
     }
 }
