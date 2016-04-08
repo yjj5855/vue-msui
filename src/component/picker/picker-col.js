@@ -17,13 +17,12 @@ export default {
             type: Object,
             default : {
                 values : [
-                    {
-                        text : '0',
-                        value : 0
-                    }
-                ]
+                    
+                ],
+                divider : false,
+                content : ''
             }
-        }
+        },
     },
     data(){
         return {
@@ -316,6 +315,9 @@ export default {
     },
     ready(){
         console.log('picker-col ready');
+        if(this.option.divider){
+            return
+        }
         let self = this;
         this.container = $(this.$el);
         this.wrapper = $(this.container).find('.picker-items-col-wrapper');
@@ -334,6 +336,9 @@ export default {
 
     },
     beforeDestroy(){
+        if(this.option.divider){
+            return
+        }
         this.initEvents(true);
     }
 }

@@ -32,12 +32,16 @@ export default {
                 {
                     values : []
                 },
-                // {
-                //     values : []
-                // },
-                // {
-                //     values : []
-                // }
+                {
+                    values : []
+                },
+                {
+                    divider: true,
+                    content: ':'
+                },
+                {
+                    values : []
+                }
             ],
             datetimeValue : [
                 {
@@ -51,7 +55,20 @@ export default {
                 {
                     text :  '30',
                     value : 30
+                },
+                {
+                    text :  '12',
+                    value : 12
+                },
+                {
+                    text :  '0',
+                    value : 0
+                },
+                {
+                    text :  '23',
+                    value : 23
                 }
+                
             ],
             year : '',
             month : ''
@@ -59,9 +76,10 @@ export default {
     },
     methods : {
         ok(value){
-            console.log(value)
-            //todo 解析这个数组 生成日期字符串
-            this.datetime = value[0].text+'-'+value[1].text+'-'+value[2].text;
+            this.datetime =[
+                [value[0].text,value[1].text,value[2].text].join('-'),
+                [value[3].text > 9 ? value[3].text : '0'+value[3].text ,value[5].text,'00'].join(':')
+            ].join(' ');
         },
         getDaysByMonthAndYear(value){
             
@@ -95,7 +113,7 @@ export default {
             
         },
         initYear(){
-            for (var i = 1950; i <= 2030; i++) {
+            for (let i = 1950; i <= 2030; i++) {
                 this.options[0].values.push({
                     text :  i,
                     value : i
@@ -103,7 +121,7 @@ export default {
             }
         },
         initMonth(){
-            for (var i = 1; i < 13; i++) {
+            for (let i = 1; i < 13; i++) {
                 this.options[1].values.push({
                     text: i < 10 ? '0' + i : i,
                     value: i
@@ -111,16 +129,29 @@ export default {
             }
         },
         initDay(max){
-
             this.options[2].values = [];
-            var days = [];
-            for(var i=1; i<= (max||31);i++) {
+            for(let i=1; i<= (max||31);i++) {
                 this.options[2].values.push({
                     text :  i < 10 ? '0' + i : i,
                     value : i
                 });
             }
-
+        },
+        initHours(){
+            for(let i = 0; i <= 23; i++){
+                this.options[3].values.push({
+                    text :  i ,
+                    value : i
+                });
+            }
+        },
+        initMinutes(){
+            for(let i = 0; i <= 59; i++){
+                this.options[5].values.push({
+                    text :  i < 10 ? '0' + i : i,
+                    value : i
+                });
+            }
         }
     },
     init(){
@@ -129,7 +160,9 @@ export default {
     beforeCompile(){
         this.initYear();
         this.initMonth();
-        this.getDaysByMonthAndYear(this.datetimeValue)
+        this.getDaysByMonthAndYear(this.datetimeValue);
+        this.initHours();
+        this.initMinutes();
     },
     ready(){
         let self = this;
