@@ -9,6 +9,7 @@ import preloader from './component/preloader/preloader'
 import indicator from './component/indicator/indicator'
 import actions from './component/actions/actions'
 import calendar from './component/calendar/calendar'
+import datetimePicker from './component/datetime-picker/datetime-picker'
 
 import pullToRefresh from './directive/pullToRefresh'
 import infiniteScroll from './directive/infiniteScroll'
@@ -22,6 +23,7 @@ exports.preloader = preloader
 exports.indicator = indicator
 exports.actions = actions
 exports.calendar = calendar
+exports.datetimePicker = datetimePicker
 
 
 exports.pullToRefresh = pullToRefresh

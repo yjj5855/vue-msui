@@ -13,7 +13,8 @@ import {
     pullToRefresh,
     infiniteScroll,
     popup,
-    calendar
+    calendar,
+    datetimePicker
 } from '../src/index'
 
 Vue.use(VueRouter);
@@ -28,6 +29,7 @@ Vue.component('preloader',preloader);
 Vue.component('indicator',indicator);
 Vue.component('actions',actions);
 Vue.component('calendar',calendar);
+Vue.component('datetime-picker',datetimePicker)
 
 Vue.directive('pull-to-refresh',pullToRefresh)
 Vue.directive('infinite-scroll',infiniteScroll)
@@ -134,6 +136,15 @@ router.map({
             //webpack自带功能 实现异步加载路由
             require.ensure([], function () {
                 let route = require('./states/calendar/route').default;
+                resolve(route);
+            })
+        }
+    },
+    '/demo/datetime': {
+        component: function (resolve) {
+            //webpack自带功能 实现异步加载路由
+            require.ensure([], function () {
+                let route = require('./states/datetime-picker/route').default;
                 resolve(route);
             })
         }

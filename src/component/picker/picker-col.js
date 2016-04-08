@@ -54,13 +54,21 @@ export default {
     },
     methods: {
         //更换数据对象
-        replaceValues(values){
-            col.destroyEvents();
-            this.option = values;
-
-            this.calcSize();
-            col.setValue(col.values[0], 0, true);
-            col.initEvents();
+        replaceValues(option,value){
+            this.initEvents(true);
+            
+            // this.option = values;
+            
+            
+            setTimeout(()=>{
+                this.items = $(this.wrapper).find('.picker-item');
+                this.calcSize();
+                $(this.wrapper).transform('translate3d(0,' + this.maxTranslate + 'px,0)').transition(0);
+                if(value){
+                    this.setValue(value, 0);
+                }
+                this.initEvents();
+            })
         },
         //获取具体尺寸
         calcSize(){
@@ -128,9 +136,13 @@ export default {
             var previousActiveIndex = this.activeIndex;
             this.activeIndex = activeIndex;
 
+            
+            let oldVal = this.val.value;
             //设置新值
-
-            this.val = this.option.values[this.activeIndex]
+            this.val = this.option.values[this.activeIndex];
+            if(this.$parent.onChange && this.val.value !== oldVal){
+                this.$parent.onChange(this.$parent.val);
+            }
             if (this.$parent.rotateEffect) {
                 $(this.items).transition(transition);
             }

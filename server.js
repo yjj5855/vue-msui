@@ -45,6 +45,7 @@ app.get('/demo/pullToRefresh', index.index);
 app.get('/demo/infiniteScroll', index.index);
 app.get('/demo/popup', index.index);
 app.get('/demo/calendar', index.index);
+app.get('/demo/datetime', index.index);
 //错误处理
 app.get('/*', function (req, res) {
     res.writeHead(301, {

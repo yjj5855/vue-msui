@@ -49,7 +49,7 @@ export default {
         },
         rotateEffect: {
             type: Boolean,
-            default: true
+            default: false
         },
         momentumRatio: {
             type: Number,
@@ -62,6 +62,9 @@ export default {
         //选择完回调
         success: {
             type: Function,
+        },
+        onChange:{
+            type: Function,
         }
     },
     data(){
@@ -73,6 +76,9 @@ export default {
     methods: {
         ok(){
             this.open = false;
+            if(this.success){
+                this.success(this.val);
+            }
         },
         initPickerCol(colElement,updateItems){
 
