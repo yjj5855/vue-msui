@@ -30,6 +30,8 @@ export default {
 
         }else if(typeof promiseOrNull == 'function'){
             this.callback = promiseOrNull;
+        }else{
+            console.log('无限滚动指令 必须是一个返回promise的function')
         }
     },
     unbind: function () {

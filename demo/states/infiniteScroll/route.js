@@ -16,13 +16,19 @@ let Index = Vue.extend({
         }
     },
     methods: {
-        loadMore(){
-            return new Promise((resolve,reject)=>{
-                setTimeout(()=>{
-                    this.loadData();
-                    resolve('加载了')
-                },3e3)
-            })
+        loadMore(page){
+            console.log('page => ',page);
+            
+            //需要的是一个生成promise的函数
+            return (page)=>{
+                return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        this.loadData();
+                        resolve('加载了')
+                    },3e3)
+                })
+            }
+            
         },
         loadData(){
             let len = this.list.length;
@@ -31,12 +37,14 @@ let Index = Vue.extend({
             }
         },
         refresh(){
-            return new Promise((resolve,reject)=>{
-                setTimeout(()=>{
-                    this.updateTime = new Date().getTime()
-                    resolve('刷新了')
-                },3e3)
-            })
+            return ()=>{
+                return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        this.updateTime = new Date().getTime()
+                        resolve('刷新了')
+                    },3e3)
+                }) 
+            }
         }
     },
     computed : {

@@ -6,7 +6,7 @@
     </header>
 
     <!-- 这里是页面内容区 -->
-    <div class="content pull-to-refresh-content" v-pull-to-refresh="refresh" data-ptr-distance="55">
+    <div class="content pull-to-refresh-content" v-pull-to-refresh="refresh()" data-ptr-distance="55">
         <!-- 默认的下拉刷新层 -->
         <div class="pull-to-refresh-layer">
             <div class="preloader"></div>
@@ -15,7 +15,7 @@
         </div>
 <pre style="font-size: .5rem">
 <xmp>
-<div class="content pull-to-refresh-content" v-pull-to-refresh="refresh" data-ptr-distance="55">
+<div class="content pull-to-refresh-content" v-pull-to-refresh="refresh()" data-ptr-distance="55">
     <!-- 默认的下拉刷新层 -->
     <div class="pull-to-refresh-layer">
         <div class="preloader"></div>
@@ -24,13 +24,16 @@
 </div>
 </xmp>
 
-//返回promise对象的方法
+//返回的是一个生成promise的函数
 refresh(){
-    return new Promise((resolve,reject)=>{
-        setTimeout(()=>{
-            resolve('刷新了')
-        },3e3)
-    })
+    return ()=>{
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                this.updateTime = new Date().getTime()
+                resolve('刷新了')
+            },3e3)
+        })
+    }
 }
 
 </pre>

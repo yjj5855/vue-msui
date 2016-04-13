@@ -7,8 +7,8 @@
 
     <!-- 这里是页面内容区 -->
     <div class="content infinite-scroll pull-to-refresh-content native-scroll"
-         v-infinite-scroll="loadMore" data-distance="55"
-         v-pull-to-refresh="refresh" data-ptr-distance="55">
+         v-infinite-scroll="loadMore(3)" data-distance="55"
+         v-pull-to-refresh="refresh()" data-ptr-distance="55">
         <!-- 默认的下拉刷新层 -->
         <div class="pull-to-refresh-layer">
             <div class="preloader"></div>

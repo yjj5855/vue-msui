@@ -15,12 +15,14 @@ let Index = Vue.extend({
     },
     methods: {
         refresh(){
-            return new Promise((resolve,reject)=>{
-                setTimeout(()=>{
-                    this.updateTime = new Date().getTime()
-                    resolve('刷新了')
-                },3e3)
-            })
+            return ()=>{
+                return new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        this.updateTime = new Date().getTime()
+                        resolve('刷新了')
+                    },3e3)
+                })
+            }
         }
     },
     computed : {
