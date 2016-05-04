@@ -249,7 +249,7 @@ export default {
             this.updateItems(undefined, this.currentTranslate, 0, this.$parent.updateValuesOnTouchmove);
 
             // Calc velocity
-            this.velocityTranslate = this.currentTranslate - this.prevTranslate ;
+            this.velocityTranslate = this.currentTranslate - this.prevTranslate || this.currentTranslate;
             this.velocityTime = (new Date()).getTime();
             this.prevTranslate = this.currentTranslate;
         },
@@ -323,14 +323,18 @@ export default {
         this.wrapper = $(this.container).find('.picker-items-col-wrapper');
         this.items = $(this.wrapper).find('.picker-item');
 
+        let opened = false;
         //监听打开状态
         this.$on('open-picker',()=>{
             this.calcSize();
             $(this.wrapper).transform('translate3d(0,' + this.maxTranslate + 'px,0)').transition(0);
             if(this.updateItems){
                 this.setValue(this.val,0)
-
-                this.initEvents();
+                if(!opened){
+                    this.initEvents();
+                    opened = true;
+                }
+               
             }
         })
 
