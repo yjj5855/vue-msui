@@ -249,7 +249,7 @@ export default {
             this.updateItems(undefined, this.currentTranslate, 0, this.$parent.updateValuesOnTouchmove);
 
             // Calc velocity
-            this.velocityTranslate = this.currentTranslate - this.prevTranslate || this.currentTranslate;
+            this.velocityTranslate = this.currentTranslate - this.prevTranslate ;
             this.velocityTime = (new Date()).getTime();
             this.prevTranslate = this.currentTranslate;
         },
