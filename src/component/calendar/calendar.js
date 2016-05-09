@@ -80,6 +80,10 @@ export default {
                 toolbar: true,
                 toolbarCloseText: 'Done',
             }
+        },
+        change: {
+            type : Function,
+            default : null
         }
     },
     data(){
@@ -98,33 +102,7 @@ export default {
         }
     },
     events : {
-        'dayClick' : function(day){
-            let broadcast = false;
-            let prevOrNext = '';
-            if(day.className.indexOf('picker-calendar-day-prev') >= 0){
-                prevOrNext = 'prev';
-                broadcast = true;
-            }else if(day.className.indexOf('picker-calendar-day-next') >= 0){
-                prevOrNext = 'next';
-                broadcast = true;
-            }else if(day.className.indexOf('picker-calendar-day-selected') >= 0){
-                
-            }else {
-                broadcast = true;
-            }
-            if(broadcast){
-                
-                if(prevOrNext == 'prev') this.prevMonth();
-                else if (prevOrNext == 'next') this.nextMonth();
-                
-                let monthNumber = day.dayMonth+1+'',dayNumber = day.dayNumber+'';
-                if(monthNumber.length == 1) monthNumber = '0' + monthNumber;
-                if(dayNumber.length == 1) dayNumber = '0' + dayNumber;
-                this.options.values = [`${day.dayYear}-${monthNumber}-${dayNumber}`];
-                
-                this.$broadcast('select-day',day);
-            }
-        } 
+        'dayClick' : 'dayClick'
     },
     components: {
         'calendar-month' : calendarMonth,
@@ -138,6 +116,37 @@ export default {
         }
     },
     methods: {
+        dayClick(day){
+            
+            let broadcast = false;
+            let prevOrNext = '';
+            if(day.className.indexOf('picker-calendar-day-prev') >= 0){
+                prevOrNext = 'prev';
+                broadcast = true;
+            }else if(day.className.indexOf('picker-calendar-day-next') >= 0){
+                prevOrNext = 'next';
+                broadcast = true;
+            }else if(day.className.indexOf('picker-calendar-day-selected') >= 0){
+
+            }else {
+                broadcast = true;
+            }
+            if(broadcast){
+
+                if(prevOrNext == 'prev') this.prevMonth();
+                else if (prevOrNext == 'next') this.nextMonth();
+
+                let monthNumber = day.dayMonth+1+'',dayNumber = day.dayNumber+'';
+                if(monthNumber.length == 1) monthNumber = '0' + monthNumber;
+                if(dayNumber.length == 1) dayNumber = '0' + dayNumber;
+                this.options.values = [`${day.dayYear}-${monthNumber}-${dayNumber}`];
+
+                this.$broadcast('select-day',day);
+            }
+            if(this.change != null){
+                this.change(this.options.values[0]);
+            }
+        },
         setCurrentNumber(){
             this.currentYearNumber = this.monthList[1].year;
             this.currentMonthNumber = this.options.monthNames[this.monthList[1].month];

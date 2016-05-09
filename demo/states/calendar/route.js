@@ -6,7 +6,7 @@ let Index = Vue.extend({
     //replace : true, //必须注释掉 不然动画失效
     template : Tpl,
     ready : function(){
-        
+
     },
     data : ()=>{
         return {
@@ -17,7 +17,9 @@ let Index = Vue.extend({
         }
     },
     methods: {
-        
+        change(date){
+            console.log(date)
+        }
     },
     computed : {
         
